@@ -3,8 +3,7 @@ import { initializeApp } from 'firebase/app';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from '@firebase/firestore';
-import { collection } from 'firebase/firestore';
+import { collection, getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -23,4 +22,4 @@ export const auth = getAuth(app);
 
 const db = getFirestore(app);
 
-export const blogCollectionReference = collection(db, 'blog-test');
+export const blogCollectionReference = collection(db, 'post-1');

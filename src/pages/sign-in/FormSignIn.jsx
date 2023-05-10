@@ -7,9 +7,12 @@ import {
 	StyledButton
 } from './styles';
 import { auth } from '../../config/firebase.config';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/auth.context';
 
 const FormSignIn = () => {
+	const { currentUser, setCurrentUser } = useContext(AuthContext);
 	const [registerData, setRegisterData] = useState({
 		email: null,
 		password: null
@@ -18,7 +21,7 @@ const FormSignIn = () => {
 	return (
 		<StyledContainer>
 			<StyledForm onSubmit={e => handleSubmit(e, registerData)}>
-				<h3>SIGN IN</h3>
+				<h3>SIGN IN 3</h3>
 				<StyledInputContainer>
 					<label>Email</label>
 					<StyledInput

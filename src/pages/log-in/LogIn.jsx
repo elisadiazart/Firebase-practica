@@ -8,18 +8,18 @@ import {
 } from './styles';
 import { auth } from '../../config/firebase.config';
 import { useContext, useState } from 'react';
-import { redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth.context';
 
 const FormLogIn = () => {
-	const { currentUser, setCurrentUser } = useContext(AuthContext);
+	const { currentUser } = useContext(AuthContext);
 	const [loginData, setLoginData] = useState({
 		email: null,
 		password: null
 	});
 
-	if (!currentUser) {
-		return redirect('/');
+	if (currentUser) {
+		return <Navigate to={'/'} />;
 	}
 
 	return (
