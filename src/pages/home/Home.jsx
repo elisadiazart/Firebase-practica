@@ -39,9 +39,10 @@ const Home = () => {
 							>
 								Ver mas
 							</button>
-							{currentUser.email === post.owner ? (
+							
+							{currentUser && currentUser.email === post.owner ? (
 								<>
-									<button onClick={() => setModal(<EditPost />)}>Editar</button>
+									<button onClick={() => setModal(<EditPost id={post.id} />)}>Editar</button>
 									<button
 										onClick={() =>
 											setModal(<DeletePost setModal={setModal} id={post.id} />)
