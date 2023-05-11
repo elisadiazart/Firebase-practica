@@ -3,11 +3,7 @@ import styled from 'styled-components';
 const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
-	position: absolute;
 	width: 400px;
-	transform: translate(-50%, -50%);
-	top: 40%;
-	left: 50%;
 	padding: 2rem;
 	background-color: black;
 	color: white;
@@ -45,10 +41,18 @@ const StyledButton = styled.button`
 	}
 `;
 
+const StyledMain = styled.main`
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	position: absolute;
+`;
+
 export {
 	StyledForm,
 	StyledContainer,
 	StyledInputContainer,
 	StyledInput,
-	StyledButton
+	StyledButton,
+	StyledMain
 };

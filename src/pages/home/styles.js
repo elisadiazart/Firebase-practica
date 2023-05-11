@@ -14,4 +14,13 @@ const StyledPosts = styled.div`
 	margin-top: 2rem;
 `;
 
-export { StyledPostCard, StyledPosts };
+const StyledImage = styled.img`
+	width: 100%;
+	margin: 1rem 0;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 6px;
+	border: 1px solid black;
+`;
+
+export { StyledPostCard, StyledPosts, StyledImage };

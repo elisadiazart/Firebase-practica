@@ -4,19 +4,22 @@ import {
 	StyledButton,
 	StyledForm,
 	StyledInput,
-	StyledInputContainer
+	StyledInputContainer,
+	StyledMain
 } from './styles';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/auth.context';
+import UploadPhoto from '../../components/photo-upload/PhotoUpload';
 
 const NewPost = () => {
 	const { currentUser } = useContext(AuthContext);
 	const [newPostInfo, setNewPostInfo] = useState({
 		titulo: null,
-		texto: null
+		texto: null,
+		image: null
 	});
 	return (
-		<main>
+		<StyledMain>
 			<StyledForm onSubmit={e => createPost(e, newPostInfo, currentUser)}>
 				<h3>Crear post</h3>
 				<StyledInputContainer>
@@ -39,7 +42,8 @@ const NewPost = () => {
 				</StyledInputContainer>
 				<StyledButton>Crear</StyledButton>
 			</StyledForm>
-		</main>
+			<UploadPhoto setNewPostInfo={setNewPostInfo} newPostInfo={newPostInfo} />
+		</StyledMain>
 	);
 };
 

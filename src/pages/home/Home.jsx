@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { blogCollectionReference } from '../../config/firebase.config';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
-import { StyledPostCard, StyledPosts } from './styles';
+import { StyledPostCard, StyledPosts, StyledImage } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
 import Modal from '../../components/modal/Modal';
 import DeletePost from '../../components/delete-post/DeletePost';
@@ -12,6 +12,7 @@ const Home = () => {
 	const [posts, setPosts] = useState([]);
 	const [modal, setModal] = useState(null);
 	const { currentUser } = useContext(AuthContext);
+	const noPhotoURL = '../../../public/no-photo-available.png';
 
 	useEffect(() => {
 		const subscribeToData = onSnapshot(blogCollectionReference, snapshot => {
@@ -31,6 +32,12 @@ const Home = () => {
 					return (
 						<StyledPostCard key={post.id}>
 							<h3>{post.titulo}</h3>
+							{post.image ? (
+								<StyledImage src={post.image} alt='' />
+							) : (
+								<StyledImage src={noPhotoURL} alt='' />
+							)}
+
 							<p>{post.texto}</p>
 							<button
 								onClick={() => {
@@ -39,10 +46,12 @@ const Home = () => {
 							>
 								Ver mas
 							</button>
-							
-							{currentUser && currentUser.email === post.owner ? (
+
+							{currentUser && currentUser.email === post.owner && (
 								<>
-									<button onClick={() => setModal(<EditPost id={post.id} />)}>Editar</button>
+									<button onClick={() => setModal(<EditPost id={post.id} />)}>
+										Editar
+									</button>
 									<button
 										onClick={() =>
 											setModal(<DeletePost setModal={setModal} id={post.id} />)
@@ -51,7 +60,7 @@ const Home = () => {
 										Borrar
 									</button>
 								</>
-							) : null}
+							)}
 						</StyledPostCard>
 					);
 				})}
